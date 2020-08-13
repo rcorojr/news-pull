@@ -35,12 +35,12 @@ mongoose.connect(MONGODB_URI);
 // A GET route for scraping the echoJS website
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with axios
-    axios.get("https://www.nytimes.com/").then(function(response) {
+    axios.get("https://old.reddit.com/r/webdev").then(function(response) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(response.data);
   
       // Now, we grab every h2 within an article tag, and do the following:
-      $("article").each(function(i, element) {
+      $("p.title").each(function(i, element) {
         // Save an empty result object
         var result = {};
   
@@ -69,6 +69,43 @@ app.get("/scrape", function(req, res) {
     });
   });
 
+  // Route for getting all Articles from the db
+app.get("/articles", function(req, res) {
+  db.Article.find({})
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
+
+// Route for grabbing a specific Article by id, populate it with it's comment
+app.get("/articles/:id", function(req, res) {
+  db.Article.findOne({ _id: req.params.id })
+    .populate("comment")
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
+
+// Route for saving/updating an Article's associated comment
+app.post("/articles/:id", function(req, res) {
+  db.Comment.create(req.body)
+    .then(function(dbComment) {
+
+      return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
+    })
+    .then(function(dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
 
 
 
