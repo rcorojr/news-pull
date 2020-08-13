@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>News Pull</title>
     <style>
-      body { background-color: #565265 }
+      .body { background-color: #4c4c4c }
      
       #articles {
         display: inline-block;
@@ -19,7 +19,7 @@
       textarea, input {
         display: block;
         width: 100%;
-        background-color: #FCF5C7;
+        background-color: #2e2e2d;
       }
       input {
         height: 36px;
@@ -29,21 +29,28 @@
         height: 200px;
         font-size: 12px;
       }
+
+      .jumbotron {
+        background-color: #4c4c4c;
+        color: aliceblue;
+      }
+      
       
     </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   </head>
+  
   <body>
 
     <div class="container">
         <div class="row">
           <div class="col-sm">
-            <div class="jumbotron">
+            <div class="jumbotron" style="background-color: #4c4c4c;">
                 <h1 class="display-4">News Pull</h1>
                 <p class="lead">Pull NYTimes articles and leave your comments.</p>
                 <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <a class="btn btn-primary btn-lg" href="/scrape" role="button">Run Pull</a>
+                <p></p>
+                <a class="btn btn-dark btn-lg" href="/scrape" role="button">Run Pull</a>
               </div>
           </div>
         </div>

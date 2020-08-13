@@ -23,7 +23,7 @@ app.use(express.static("public"));
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
-// Connect to mongo Heroku
+// // Connect to mongo Heroku
 // var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongonews-pull";
 
 // mongoose.connect(MONGODB_URI);
@@ -68,6 +68,7 @@ app.get("/articles", function(req, res) {
       res.json(err);
     });
 });
+
 
 // Route for grabbing a specific Article by id, populate it with it's comment
 app.get("/articles/:id", function(req, res) {
