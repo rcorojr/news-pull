@@ -32,10 +32,10 @@ mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true 
 
 // A GET route for scraping the website
 app.get("/scrape", function(req, res) {
-    axios.get("https://old.reddit.com/r/webdev").then(function(response) {
+    axios.get("https://news.google.com/topstories?hl=en-US&gl=US&ceid=US:en/").then(function(response) {
       var $ = cheerio.load(response.data);
   
-      $("p.title").each(function(i, element) {
+      $("article").each(function(i, element) {
         var result = {};
   
         result.title = $(this)
