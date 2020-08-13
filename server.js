@@ -23,8 +23,8 @@ app.use(express.static("public"));
 // Connect to the Mongo DB
 mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true });
 
-// Connect to Heroku
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+// Connect to mongo Heroku
+// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongonews-pull";
 
 // mongoose.connect(MONGODB_URI);
 
@@ -32,10 +32,10 @@ mongoose.connect("mongodb://localhost/unit18Populater", { useNewUrlParser: true 
 
 // A GET route for scraping the website
 app.get("/scrape", function(req, res) {
-    axios.get("https://news.google.com/topstories?hl=en-US&gl=US&ceid=US:en/").then(function(response) {
+    axios.get("https://old.reddit.com/r/webdev/").then(function(response) {
       var $ = cheerio.load(response.data);
   
-      $("article").each(function(i, element) {
+      $("p.title").each(function(i, element) {
         var result = {};
   
         result.title = $(this)
