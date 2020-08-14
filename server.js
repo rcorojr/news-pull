@@ -54,9 +54,9 @@ app.get("/scrape", function(req, res) {
           });
       });
   
-      res.send("Scrape Complete");
-    });
-  });
+//       res.send("Scrape Complete");
+//     });
+//   });
 
   // Route for getting all Articles from the db
 app.get("/articles", function(req, res) {
