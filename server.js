@@ -48,7 +48,8 @@ app.get("/scrape", function(req, res) {
   
         db.Article.create(result)
           .then(function(dbArticle) {
-            console.log(dbArticle); res.send("Scrape Complete");
+            console.log(dbArticle); 
+            res.redirect("/");
           })
           .catch(function(err) {
             console.log(err);
